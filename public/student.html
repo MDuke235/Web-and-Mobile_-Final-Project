@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bảng điểm học sinh</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Hệ thống Quản lý Học sinh</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="about.html">Liên hệ</a></li>
+                <li><a href="login.html">Đăng nhập</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="content">
+            <div id="student-info">
+                <h2>Thông tin Bảng điểm</h2>
+                <p>Đang tải dữ liệu...</p>
+            </div>
+
+            <hr class="divider">
+
+            <div class="comment-section">
+                <h3>Bình luận & Đánh giá</h3>
+                
+                <form id="comment-form" class="form-group">
+                    <input type="text" id="reviewer-name" placeholder="Tên của bạn" required>
+                    <input type="email" id="reviewer-email" placeholder="Email liên hệ" required>
+                    <select id="reviewer-rating" required>
+                        <option value="">-- Chọn điểm đánh giá --</option>
+                        <option value="5">5 Sao - Rất tốt</option>
+                        <option value="4">4 Sao - Tốt</option>
+                        <option value="3">3 Sao - Bình thường</option>
+                        <option value="2">2 Sao - Kém</option>
+                        <option value="1">1 Sao - Rất kém</option>
+                    </select>
+                    <textarea id="reviewer-content" rows="4" placeholder="Nhập nội dung bình luận hoặc yêu cầu phúc khảo..." required></textarea>
+                    <button type="submit" class="btn-submit">Gửi Bình Luận</button>
+                </form>
+
+                <div id="comments-list">
+                    <h4>Các bình luận gần đây:</h4>
+                    </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Hệ thống trường phổ thông.</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

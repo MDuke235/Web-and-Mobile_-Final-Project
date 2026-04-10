@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản trị hệ thống</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Hệ thống Quản lý Học sinh</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="about.html">Liên hệ</a></li>
+                <li><a href="login.html" onclick="logout()">Đăng xuất</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="content" style="flex: 100%; max-width: 100%;">
+            <h2>Bảng điều khiển Admin</h2>
+            
+            <div class="admin-cards">
+                <div class="card">
+                    <h3>Tổng lượt truy cập</h3>
+                    <p id="admin-total-views" class="stat-number">0</p>
+                </div>
+                <div class="card">
+                    <h3>Tổng học sinh</h3>
+                    <p class="stat-number">245</p>
+                </div>
+                <div class="card">
+                    <h3>Bình luận chờ duyệt</h3>
+                    <p id="admin-total-comments" class="stat-number">0</p>
+                </div>
+            </div>
+
+            <hr class="divider">
+
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <h3 style="margin: 0;">Quản lý Điểm Học Sinh</h3>
+                    <select id="admin-semester-filter" onchange="loadAdminStudents()" style="padding: 6px; border-radius: 4px; font-weight: bold; border: 1px solid #0056b3; color: #0056b3;">
+                        <option value="Học kỳ 1">Học kỳ 1</option>
+                        <option value="Học kỳ 2">Học kỳ 2</option>
+                    </select>
+                </div>
+                <button class="btn-submit" onclick="openAddStudentModal()" style="padding: 8px 15px;">➕ Thêm Học Sinh Mới</button>
+            </div>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Mã HS</th>
+                            <th>Họ Tên (Lớp)</th>
+                            <th>Môn học</th>
+                            <th>Quá trình</th>
+                            <th>Điểm Thi</th>
+                            <th>Tổng kết</th>
+                            <th>Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody id="admin-students-list">
+                        </tbody>
+                </table>
+            </div>
+
+            <hr class="divider">
+
+            <h3>Quản lý Bình Luận</h3>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th><th>Người gửi</th><th>Nội dung</th><th>Mã HS</th><th>Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody id="admin-comments-list"></tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <div id="edit-modal" class="popup-overlay">
+        <div class="popup-content" style="width: 450px;">
+            <h3>Nhập / Sửa điểm</h3>
+            <form id="edit-grade-form" class="form-group" style="text-align: left;">
+                <input type="hidden" id="edit-student-id">
+                
+                <div style="display: flex; gap: 10px;">
+                    <div class="input-field" style="flex: 1;">
+                        <label>Học kỳ:</label>
+                        <select id="edit-semester" required style="width: 100%; padding: 8px;">
+                            <option value="Học kỳ 1">Học kỳ 1</option>
+                            <option value="Học kỳ 2">Học kỳ 2</option>
+                        </select>
+                    </div>
+                    <div class="input-field" style="flex: 1;">
+                        <label>Môn học:</label>
+                        <select id="edit-subject-name" required style="width: 100%; padding: 8px;">
+                            <option value="">-- Chọn môn --</option>
+                            <option value="Toán Học">Toán Học</option>
+                            <option value="Vật Lý">Vật Lý</option>
+                            <option value="Tin Học">Tin Học</option>
+                            <option value="Hệ điều hành">Hệ điều hành</option>
+                            <option value="Kiến trúc máy tính">Kiến trúc máy tính</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div style="display: flex; gap: 10px;">
+                    <div class="input-field" style="flex: 1;">
+                        <label>Điểm QT:</label>
+                        <input type="number" step="0.1" id="edit-process" required>
+                    </div>
+                    <div class="input-field" style="flex: 1;">
+                        <label>Điểm Thi:</label>
+                        <input type="number" step="0.1" id="edit-final" required>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 10px; margin-top: 10px;">
+                    <button type="submit" class="btn-submit" style="flex: 1;">Lưu Điểm</button>
+                    <button type="button" class="btn-submit" style="flex: 1; background: #6c757d;" onclick="closeModal('edit-modal')">Hủy</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="add-student-modal" class="popup-overlay">
+        <div class="popup-content" style="width: 400px;">
+            <h3>Thêm Học Sinh Mới</h3>
+            <p style="font-size: 13px; color: gray;">Mật khẩu mặc định cho học sinh đăng nhập là: <b>123456</b></p>
+            <form id="add-student-form" class="form-group" style="text-align: left;">
+                <div class="input-field">
+                    <label>Mã Học Sinh:</label>
+                    <input type="text" id="add-student-id" required placeholder="VD: 20239999">
+                </div>
+                <div class="input-field">
+                    <label>Họ và Tên:</label>
+                    <input type="text" id="add-full-name" required placeholder="VD: Nguyễn Văn A">
+                </div>
+                <div class="input-field">
+                    <label>Lớp:</label>
+                    <input type="text" id="add-class-name" required placeholder="VD: 12A1">
+                </div>
+                <div style="display: flex; gap: 10px; margin-top: 10px;">
+                    <button type="submit" class="btn-submit" style="flex: 1;">Thêm Mới</button>
+                    <button type="button" class="btn-submit" style="flex: 1; background: #6c757d;" onclick="closeModal('add-student-modal')">Hủy</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Hệ thống trường phổ thông.</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

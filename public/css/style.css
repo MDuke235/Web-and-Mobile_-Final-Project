@@ -1,0 +1,289 @@
+/* --- RESET & BIẾN CƠ BẢN --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* --- BỐ CỤC CHÍNH DÙNG FLEXBOX --- */
+.container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 1400px;
+}
+
+.content {
+    flex: 3; /* Chiếm 3 phần */
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.sidebar {
+    flex: 1; /* Chiếm 1 phần */
+    background: #e9ecef;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+/* =========================================
+   RESPONSIVE: NGƯỠNG DƯỚI 1200px
+   ========================================= */
+@media (max-width: 1200px) {
+    .container {
+        max-width: 100%;
+        padding: 15px;
+    }
+}
+
+/* =========================================
+   RESPONSIVE: NGƯỠNG DƯỚI 800px (Mobile)
+   ========================================= */
+@media (max-width: 800px) {
+    .container {
+        flex-direction: column; /* Đẩy sidebar xuống dưới content */
+    }
+    
+    header nav ul {
+        display: flex;
+        flex-direction: column; /* Menu dọc trên điện thoại */
+        gap: 10px;
+    }
+}
+
+/* --- STYLE CHO POPUP QUẢNG CÁO --- */
+.popup-overlay {
+    display: none; /* Ẩn mặc định, JS sẽ bật lên sau */
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    z-index: 1000;
+}
+
+.popup-content {
+    background: #fff;
+    width: 300px;
+    margin: 15vh auto;
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.popup-content button {
+    margin-top: 15px;
+    padding: 8px 20px;
+    cursor: pointer;
+    background: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+/* --- TRANG BẢNG ĐIỂM --- */
+.table-responsive {
+    overflow-x: auto; /* Cuộn ngang nếu màn hình quá nhỏ */
+    margin-top: 15px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #0056b3;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.divider {
+    border: 0;
+    height: 1px;
+    background: #ccc;
+    margin: 30px 0;
+}
+
+/* --- FORM BÌNH LUẬN --- */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+
+.form-group input, .form-group select, .form-group textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    width: 100%;
+}
+
+.btn-submit {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.btn-submit:hover {
+    background: #218838;
+}
+
+/* --- DANH SÁCH BÌNH LUẬN --- */
+.comment-item {
+    background: #fff;
+    border-left: 4px solid #0056b3;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.comment-meta {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.comment-meta strong {
+    color: #333;
+}
+
+.rating-stars {
+    color: #ffc107;
+    font-weight: bold;
+}
+/* --- TRANG ĐĂNG NHẬP --- */
+.login-page {
+    justify-content: center; /* Căn giữa form theo chiều ngang */
+    align-items: center;     /* Căn giữa theo chiều dọc */
+    min-height: 60vh;
+}
+
+.login-box {
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 450px; /* Giới hạn chiều rộng form */
+    text-align: center;
+}
+
+.login-box h2 {
+    margin-bottom: 10px;
+    color: #0056b3;
+}
+
+.login-box p {
+    margin-bottom: 20px;
+    color: #666;
+}
+
+.input-field {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.input-field label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+.login-hints {
+    margin-top: 25px;
+    text-align: left;
+    background: #e9ecef;
+    padding: 15px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.login-hints ul {
+    list-style: none;
+    margin-top: 5px;
+}
+
+.login-hints li {
+    margin-bottom: 5px;
+}
+/* --- TRANG QUẢN TRỊ (ADMIN) --- */
+.admin-cards {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+
+.card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    flex: 1;
+    text-align: center;
+    border-top: 4px solid #0056b3;
+}
+
+.stat-number {
+    font-size: 36px;
+    font-weight: bold;
+    color: #0056b3;
+    margin-top: 10px;
+}
+
+.btn-action {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+}
+
+.btn-edit { background: #ffc107; color: #333; }
+.btn-delete { background: #dc3545; }
+
+.btn-edit:hover { background: #e0a800; }
+.btn-delete:hover { background: #c82333; }
+
+/* Responsive cho Admin Dashboard */
+@media (max-width: 800px) {
+    .admin-cards {
+        flex-direction: column; /* Xếp dọc các thẻ thống kê trên mobile */
+    }
+}

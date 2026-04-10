@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ thống Quản lý Học sinh - Trang chủ</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Hệ thống Quản lý Học sinh</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active">Trang chủ</a></li>
+                <li><a href="about.html">Liên hệ</a></li>
+                <li><a href="login.html">Đăng nhập</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="content">
+            <h2>Chào mừng đến với Hệ thống Quản lý Điểm</h2>
+            <p>Hệ thống giúp nhà trường, giáo viên và học sinh quản lý, tra cứu điểm số một cách minh bạch, nhanh chóng và chính xác nhất.</p>
+            
+            <div style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 8px; border-left: 5px solid #0056b3;">
+                <h3 style="color: #0056b3; margin-bottom: 10px;">📌 Hướng dẫn sử dụng:</h3>
+                <ul style="margin-left: 20px; line-height: 1.8;">
+                    <li><strong>Dành cho Giáo viên:</strong> Vui lòng <a href="login.html" style="color: #d9534f; font-weight: bold;">đăng nhập</a> để vào trang quản trị, tiến hành nhập điểm hoặc sửa điểm cho học sinh.</li>
+                    <li><strong>Dành cho Học sinh:</strong> Đăng nhập bằng mã học sinh của mình để xem bảng điểm chi tiết các kỳ học.</li>
+                    <li><strong>Dành cho Phụ huynh:</strong> Có thể gửi yêu cầu, thắc mắc hoặc ý kiến trực tiếp tại trang <a href="about.html" style="color: #0056b3;">Liên hệ</a>.</li>
+                </ul>
+            </div>
+        </section>
+
+        <aside class="sidebar">
+            <h3>📢 Thông báo mới</h3>
+            <ul style="list-style-type: none; padding-top: 10px; line-height: 1.6;">
+                <li style="margin-bottom: 15px; border-bottom: 1px dashed #ccc; padding-bottom: 10px;">
+                    <strong>[15/05/2026]</strong><br>
+                    Lịch thi cuối học kỳ 2 khối 10, 11, 12...
+                </li>
+                <li style="margin-bottom: 15px; border-bottom: 1px dashed #ccc; padding-bottom: 10px;">
+                    <strong>[10/05/2026]</strong><br>
+                    Danh sách học sinh đạt thành tích xuất sắc tháng 4.
+                </li>
+            </ul>
+        </aside>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Hệ thống trường phổ thông.</p>
+    </footer>
+
+    <div id="ad-popup" class="popup-overlay">
+        <div class="popup-content">
+            <h3 style="color: #d9534f; margin-bottom: 10px;">Ưu đãi đặc biệt!</h3>
+            <p>Đăng ký ngay khóa học ôn thi THPT Quốc gia để nhận học bổng lên đến 20%!</p>
+            <button class="btn-submit" onclick="closePopup()" style="margin-top: 15px;">Đóng thông báo</button>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

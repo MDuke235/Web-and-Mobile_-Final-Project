@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giới thiệu & Liên hệ</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Hệ thống Quản lý Học sinh</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="about.html" class="active">Liên hệ</a></li>
+                <li><a href="login.html">Đăng nhập</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="content">
+            <h2>Giới thiệu về nhà trường</h2>
+            <p>Trường Phổ thông tự hào là đơn vị tiên phong trong việc ứng dụng công nghệ thông tin vào quản lý giáo dục. Hệ thống quản lý điểm số trực tuyến giúp phụ huynh và học sinh dễ dàng theo dõi tiến độ học tập một cách minh bạch, nhanh chóng và chính xác.</p>
+            
+            <hr class="divider">
+
+            <h3>Gửi ý kiến liên hệ</h3>
+            <p>Nếu phụ huynh hoặc học sinh có bất kỳ thắc mắc nào về điểm số, học phí hoặc quy chế tuyển sinh, vui lòng để lại lời nhắn dưới đây.</p>
+            
+            <form id="contact-form" class="form-group" style="margin-top: 20px;">
+                <div class="input-field">
+                    <label for="contact-name">Họ và Tên:</label>
+                    <input type="text" id="contact-name" placeholder="Nhập họ tên của bạn..." required>
+                </div>
+                
+                <div class="input-field">
+                    <label for="contact-email">Email / Số điện thoại:</label>
+                    <input type="text" id="contact-email" placeholder="Nhập email hoặc SĐT liên lạc..." required>
+                </div>
+                
+                <div class="input-field">
+                    <label for="contact-message">Nội dung ý kiến:</label>
+                    <textarea id="contact-message" rows="5" placeholder="Nhập lời nhắn của bạn..." required></textarea>
+                </div>
+                
+                <button type="submit" class="btn-submit">Gửi Lời Nhắn</button>
+            </form>
+        </section>
+
+        <aside class="sidebar">
+            <h3>Thông tin liên hệ</h3>
+            <ul style="list-style-type: none; padding-top: 10px; line-height: 2;">
+                <li>📍 <strong>Địa chỉ:</strong> Số 1, Đại Cồ Việt, Hà Nội</li>
+                <li>📞 <strong>Hotline:</strong> 0123.456.789</li>
+                <li>✉️ <strong>Email:</strong> contact@truong.edu.vn</li>
+                <li>⏰ <strong>Giờ làm việc:</strong> 7:30 - 17:00 (Thứ 2 - Thứ 6)</li>
+            </ul>
+        </aside>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Hệ thống trường phổ thông. Tổng lượt truy cập: <span id="view-count-about">150</span></p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
