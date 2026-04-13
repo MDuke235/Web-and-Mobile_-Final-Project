@@ -20,24 +20,22 @@
 
     <main class="container">
         <section class="content" style="flex: 100%; max-width: 100%;">
-            <h2>Bảng điều khiển Admin</h2>
+            <h2 id="dashboard-title">Bảng điều khiển Quản trị</h2>
             
-            <div class="admin-cards">
+            <div id="admin-stats-section" class="admin-cards">
                 <div class="card">
                     <h3>Tổng lượt truy cập</h3>
                     <p id="admin-total-views" class="stat-number">0</p>
                 </div>
                 <div class="card">
                     <h3>Tổng học sinh</h3>
-                    <p class="stat-number">245</p>
+                    <p class=\"stat-number\">245</p>
                 </div>
                 <div class="card">
                     <h3>Bình luận chờ duyệt</h3>
                     <p id="admin-total-comments" class="stat-number">0</p>
                 </div>
             </div>
-
-            <hr class="divider">
 
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                 <div style="display: flex; align-items: center; gap: 15px;">
@@ -47,39 +45,33 @@
                         <option value="Học kỳ 2">Học kỳ 2</option>
                     </select>
                 </div>
-                <button class="btn-submit" onclick="openAddStudentModal()" style="padding: 8px 15px;">➕ Thêm Học Sinh Mới</button>
+                <button id="btn-add-student" class="btn-submit" onclick="openAddStudentModal()" style="padding: 8px 15px;">➕ Thêm Học Sinh Mới</button>
             </div>
+            
             <div class="table-responsive">
                 <table>
                     <thead>
                         <tr>
-                            <th>Mã HS</th>
-                            <th>Họ Tên (Lớp)</th>
-                            <th>Môn học</th>
-                            <th>Quá trình</th>
-                            <th>Điểm Thi</th>
-                            <th>Tổng kết</th>
-                            <th>Hành động</th>
+                            <th>Mã HS</th><th>Họ Tên (Lớp)</th><th>Môn học</th><th>Quá trình</th><th>Điểm Thi</th><th>Tổng kết</th><th>Hành động</th>
                         </tr>
                     </thead>
-                    <tbody id="admin-students-list">
-                        </tbody>
+                    <tbody id="admin-students-list"></tbody>
                 </table>
             </div>
 
-            <hr class="divider">
-
-            <h3>Quản lý Bình Luận</h3>
-            <div class="table-responsive">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th><th>Người gửi</th><th>Nội dung</th><th>Mã HS</th><th>Hành động</th>
-                        </tr>
-                    </thead>
-                    <tbody id="admin-comments-list"></tbody>
-                </table>
+            <div id="admin-comments-section">
+                <hr class="divider">
+                <h3>Quản lý Bình Luận</h3>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr><th>ID</th><th>Người gửi</th><th>Nội dung</th><th>Mã HS</th><th>Hành động</th></tr>
+                        </thead>
+                        <tbody id="admin-comments-list"></tbody>
+                    </table>
+                </div>
             </div>
+            
         </section>
     </main>
 

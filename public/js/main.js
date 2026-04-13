@@ -29,28 +29,24 @@ function logout() {
 }
 
 // CẬP NHẬT MENU ĐỘNG DỰA THEO TÀI KHOẢN ĐĂNG NHẬP
+// CẬP NHẬT MENU ĐỘNG DỰA THEO TÀI KHOẢN ĐĂNG NHẬP
 function updateNavigation() {
     const userJson = localStorage.getItem('currentUser');
     if (userJson) {
         const user = JSON.parse(userJson);
         const navUl = document.querySelector('header nav ul');
         
-        // Ẩn nút Đăng nhập mặc định
         const loginLinks = navUl.querySelectorAll('a[href="login.html"]');
         loginLinks.forEach(link => { if(!link.getAttribute('onclick')) link.parentElement.remove(); });
 
-        // Hiện nút theo Quyền
         if (user.role === 'admin') {
-            if(!document.querySelector('a[href="admin.html"]')) {
-                navUl.innerHTML = `<li><a href="admin.html">Quản trị</a></li>` + navUl.innerHTML;
-            }
+            if(!document.querySelector('a[href="admin.html"]')) navUl.innerHTML = `<li><a href="admin.html">Quản trị Hệ thống</a></li>` + navUl.innerHTML;
+        } else if (user.role === 'teacher') {
+            if(!document.querySelector('a[href="admin.html"]')) navUl.innerHTML = `<li><a href="admin.html">Nhập Điểm (GV)</a></li>` + navUl.innerHTML;
         } else {
-            if(!document.querySelector('a[href*="student.html"]')) {
-                navUl.innerHTML = `<li><a href="student.html?id=${user.username}">Bảng điểm của tôi</a></li>` + navUl.innerHTML;
-            }
+            if(!document.querySelector('a[href*="student.html"]')) navUl.innerHTML = `<li><a href="student.html?id=${user.username}">Bảng điểm của tôi</a></li>` + navUl.innerHTML;
         }
         
-        // Hiện nút Đăng xuất
         if(!document.querySelector('a[onclick="logout()"]')) {
             navUl.innerHTML += `<li><a href="#" onclick="logout()">Đăng xuất (${user.username})</a></li>`;
         }
@@ -71,7 +67,7 @@ document.addEventListener("DOMContentLoaded", async function() {
         }
     }
 
-    // --- B. TRANG LIÊN HỆ ---
+    // --- B. TRANG LIÊN HỆ --- 
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
@@ -100,11 +96,11 @@ document.addEventListener("DOMContentLoaded", async function() {
                 const result = await response.json();
 
                 if (result.success) {
-                    // LƯU TRÍ NHỚ ĐĂNG NHẬP (localStorage)
                     localStorage.setItem('currentUser', JSON.stringify(result.user));
 
-                    if (result.user.role === 'admin') {
-                        alert("Đăng nhập Admin thành công!");
+                    if (result.user.role === 'admin' || result.user.role === 'teacher') {
+                        let roleName = result.user.role === 'admin' ? 'Quản trị viên' : 'Giáo viên';
+                        alert(`Đăng nhập ${roleName} thành công!`);
                         window.location.href = 'admin.html';
                     } else {
                         alert("Xin chào! Đang chuyển hướng đến Bảng điểm...");
@@ -238,6 +234,14 @@ document.addEventListener("DOMContentLoaded", async function() {
     const adminCommentsList = document.getElementById('admin-comments-list');
 
     if (adminStudentsList && adminCommentsList) {
+        // KIỂM TRA QUYỀN VÀ ẨN GIAO DIỆN NẾU LÀ GIÁO VIÊN
+        const loggedInUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (loggedInUser && loggedInUser.role === 'teacher') {
+            document.getElementById('dashboard-title').innerText = "Bảng điều khiển Giáo viên";
+            if (document.getElementById('admin-stats-section')) document.getElementById('admin-stats-section').style.display = 'none';
+            if (document.getElementById('btn-add-student')) document.getElementById('btn-add-student').style.display = 'none';
+            if (document.getElementById('admin-comments-section')) document.getElementById('admin-comments-section').style.display = 'none';
+        }
         try {
             const viewRes = await fetch('http://localhost:3000/api/stats/view');
             const viewData = await viewRes.json();
