@@ -344,13 +344,27 @@ document.addEventListener("DOMContentLoaded", async function() {
                     process_score: document.getElementById('edit-process').value,
                     final_score: document.getElementById('edit-final').value
                 };
-                const res = await fetch('http://localhost:3000/api/admin/grades', { 
-                    method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(updateData) 
-                });
-                if ((await res.json()).success) { 
-                    alert("Đã lưu điểm thành công!"); 
-                    closeModal('edit-modal'); 
-                    loadAdminStudents(); 
+                
+                try {
+                    const res = await fetch('http://localhost:3000/api/admin/grades', { 
+                        method: 'POST', 
+                        headers: { 'Content-Type': 'application/json' }, 
+                        body: JSON.stringify(updateData) 
+                    });
+                    
+                    const result = await res.json();
+                    
+                    // XỬ LÝ KẾT QUẢ
+                    if (result.success) { 
+                        alert("Đã lưu điểm thành công!"); 
+                        closeModal('edit-modal'); 
+                        loadAdminStudents(); 
+                    } else {
+                        // Nếu backend từ chối (báo lỗi số âm, quá 10) thì hiện cảnh báo
+                        alert(result.message || "Có lỗi xảy ra khi lưu điểm!");
+                    }
+                } catch (error) {
+                    alert("Lỗi kết nối đến máy chủ!");
                 }
             });
         }

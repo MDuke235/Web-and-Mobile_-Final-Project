@@ -123,14 +123,21 @@ app.delete('/api/admin/comments/:id', async (req, res) => {
 // 8. API: Nhập / Cập nhật điểm (Hỗ trợ theo Kỳ và Môn)
 app.post('/api/admin/grades', async (req, res) => {
     const { student_id, semester, subject_name, process_score, final_score } = req.body;
+    
+    // --- ĐOẠN CODE MỚI THÊM VÀO ĐỂ BẢO VỆ ---
+    if (process_score < 0 || process_score > 10 || final_score < 0 || final_score > 10) {
+        return res.status(400).json({ 
+            success: false, 
+            message: 'Lỗi: Điểm số phải nằm trong khoảng từ 0.0 đến 10.0!' 
+        });
+    }
+    // ----------------------------------------
+
     try {
-        // Kiểm tra xem môn này ở kỳ này đã có điểm chưa
         const [exist] = await db.execute('SELECT id FROM grades WHERE student_id = ? AND subject_name = ? AND semester = ?', [student_id, subject_name, semester]);
         if (exist.length > 0) {
-            // Đã có -> Cập nhật
             await db.execute('UPDATE grades SET process_score = ?, final_score = ? WHERE id = ?', [process_score, final_score, exist[0].id]);
         } else {
-            // Chưa có -> Thêm mới
             await db.execute('INSERT INTO grades (student_id, semester, subject_name, process_score, final_score) VALUES (?, ?, ?, ?, ?)', [student_id, semester, subject_name, process_score, final_score]);
         }
         res.json({ success: true });
