@@ -287,3 +287,52 @@ tr:nth-child(even) {
         flex-direction: column; /* Xếp dọc các thẻ thống kê trên mobile */
     }
 }
+/* ======================================================
+   TÂN TRANG THANH MENU (HEADER & NAVIGATION)
+   ====================================================== */
+
+/* 1. Khu vực Header chứa logo và menu */
+header {
+    background-color: #0056b3; /* Màu nền xanh lam chuyên nghiệp */
+    color: #ffffff;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between; /* Đẩy tiêu đề sang trái, menu sang phải */
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ cho đẹp */
+}
+
+header h1 {
+    margin: 0;
+    font-size: 22px;
+    letter-spacing: 1px;
+}
+
+/* 2. Cấu trúc danh sách Menu nằm ngang */
+header nav ul {
+    list-style-type: none; /* Xóa dấu chấm tròn mặc định */
+    margin: 0;
+    padding: 0;
+    display: flex; /* Dàn hàng ngang */
+    align-items: center;
+    gap: 10px; /* Khoảng cách đều giữa các nút */
+}
+
+/* 3. Trang trí các nút Link */
+header nav ul li a {
+    text-decoration: none; /* Xóa gạch chân xấu xí */
+    color: #ffffff; /* Màu chữ trắng trên nền xanh */
+    font-weight: 600;
+    font-size: 15px;
+    padding: 8px 16px; /* Tạo không gian bên trong nút */
+    border-radius: 6px; /* Bo góc mềm mại */
+    transition: all 0.3s ease; /* Hiệu ứng chuyển động mượt 0.3 giây */
+}
+
+/* 4. Hiệu ứng khi di chuột vào (Hover) hoặc đang ở trang hiện tại (Active) */
+header nav ul li a:hover,
+header nav ul li a.active {
+    background-color: rgba(255, 255, 255, 0.2); /* Làm sáng nền nút */
+    color: #ffc107; /* Đổi màu chữ sang vàng nổi bật */
+    transform: translateY(-2px); /* Hiệu ứng nút nảy nhẹ lên trên */
+}
