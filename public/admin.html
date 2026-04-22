@@ -37,15 +37,22 @@
                 </div>
             </div>
 
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                <div style="display: flex; align-items: center; gap: 15px;">
-                    <h3 style="margin: 0;">Quản lý Điểm Học Sinh</h3>
-                    <select id="admin-semester-filter" onchange="loadAdminStudents()" style="padding: 6px; border-radius: 4px; font-weight: bold; border: 1px solid #0056b3; color: #0056b3;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 10px;">
+                <div style="display: flex; align-items: center; gap: 15px; flex-wrap: wrap;">
+                    <h3 style="margin: 0;">Quản lý Điểm</h3>
+                    
+                    <select id="admin-semester-filter" onchange="renderAdminTable()" style="padding: 6px; border-radius: 4px; font-weight: bold; border: 1px solid #0056b3; color: #0056b3;">
                         <option value="Học kỳ 1">Học kỳ 1</option>
                         <option value="Học kỳ 2">Học kỳ 2</option>
                     </select>
+
+                    <input type="text" id="search-student" oninput="renderAdminTable()" placeholder="🔍 Gõ tên hoặc mã HS..." style="padding: 6px 10px; border-radius: 4px; border: 1px solid #ccc; width: 200px;">
                 </div>
-                <button id="btn-add-student" class="btn-submit" onclick="openAddStudentModal()" style="padding: 8px 15px;">➕ Thêm Học Sinh Mới</button>
+                
+                <div style="display: flex; gap: 10px;">
+                    <button class="btn-submit" onclick="window.print()" style="padding: 8px 15px; background: #28a745;">🖨️ In Bảng</button>
+                    <button id="btn-add-student" class="btn-submit" onclick="openAddStudentModal()" style="padding: 8px 15px;">➕ Thêm Học Sinh</button>
+                </div>
             </div>
             
             <div class="table-responsive">

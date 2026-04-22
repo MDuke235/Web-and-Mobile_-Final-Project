@@ -336,3 +336,57 @@ header nav ul li a.active {
     color: #ffc107; /* Đổi màu chữ sang vàng nổi bật */
     transform: translateY(-2px); /* Hiệu ứng nút nảy nhẹ lên trên */
 }
+
+/* ======================================================
+   TÍNH NĂNG 1A: CHẾ ĐỘ ĐIỆN THOẠI (RESPONSIVE)
+   ====================================================== */
+@media screen and (max-width: 768px) {
+    /* Đẩy menu và logo nằm dọc cho gọn */
+    header { flex-direction: column; gap: 15px; text-align: center; }
+    header nav ul { flex-wrap: wrap; justify-content: center; }
+    
+    /* Giao diện chính xếp dọc thay vì ngang */
+    main.container { flex-direction: column; }
+    .admin-cards { flex-direction: column; }
+    
+    /* Cho phép bảng cuộn ngang trên màn hình nhỏ để không bị vỡ bố cục */
+    .table-responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        border: 1px solid #ddd;
+    }
+}
+
+/* ======================================================
+   TÍNH NĂNG 1B: CHẾ ĐỘ IN ẤN CHUYÊN NGHIỆP (PRINT MODE)
+   ====================================================== */
+@media print {
+    /* 1. Ẩn tất cả những thứ không cần thiết khi in ra giấy */
+    header, footer, .sidebar, button, #search-student, #admin-semester-filter, #admin-comments-section, .admin-cards, .action-column {
+        display: none !important;
+    }
+    
+    /* 2. Đổi màu nền thành trắng để tiết kiệm mực in */
+    body, main.container {
+        background-color: white !important;
+        color: black !important;
+        box-shadow: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    
+    /* 3. Chỉnh lại đường viền bảng cho sắc nét trên giấy */
+    table { width: 100% !important; border-collapse: collapse !important; }
+    th, td { border: 1px solid #000 !important; padding: 6px !important; color: black !important;}
+    
+    /* 4. Thêm chữ ký người in ở cuối trang */
+    body::after {
+        content: "Xác nhận của Ban Giám Hiệu \A\A\A (Ký và ghi rõ họ tên)";
+        white-space: pre;
+        display: block;
+        text-align: right;
+        margin-top: 50px;
+        margin-right: 50px;
+        font-weight: bold;
+    }
+}

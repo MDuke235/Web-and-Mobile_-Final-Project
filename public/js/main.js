@@ -250,28 +250,53 @@ document.addEventListener("DOMContentLoaded", async function() {
 
         // GỘP CÁC MÔN VÀO 1 HÀNG CHO GIÁO VIÊN
         // HIỂN THỊ HỌC SINH (GỘP CỘT & LỌC THEO KỲ)
+        // Biến toàn cục lưu trữ dữ liệu gốc để tìm kiếm
+        window.allStudentsData = [];
+
+        // HÀM 1: CHỈ GỌI API ĐỂ LẤY DỮ LIỆU
         window.loadAdminStudents = async function() {
             const res = await fetch('http://localhost:3000/api/admin/students');
             const result = await res.json();
-            
             if (result.success) {
-                // Lấy kỳ học đang được chọn ở nút Dropdown
-                const selectedSemester = document.getElementById('admin-semester-filter').value;
-                const studentsMap = {};
+                window.allStudentsData = result.data; // Cất dữ liệu vào kho
+                renderAdminTable(); // Gọi hàm vẽ bảng
+            }
+        }
+
+        // HÀM 2: LỌC DỮ LIỆU VÀ VẼ BẢNG (Chạy mỗi khi gõ phím hoặc đổi kỳ)
+        window.renderAdminTable = function() {
+            if (!window.allStudentsData) return;
+
+            const selectedSemester = document.getElementById('admin-semester-filter').value;
+            
+            // Lấy chữ người dùng gõ vào (chuyển thành chữ thường để dễ so sánh)
+            const searchInput = document.getElementById('search-student');
+            const searchText = searchInput ? searchInput.value.toLowerCase().trim() : "";
+
+            const studentsMap = {};
+            
+            window.allStudentsData.forEach(item => {
+                // TÍNH NĂNG LIVE SEARCH: Kiểm tra xem Tên hoặc Mã HS có chứa chữ đang gõ không
+                const matchSearch = item.full_name.toLowerCase().includes(searchText) || item.student_id.toString().includes(searchText);
                 
-                result.data.forEach(item => {
-                    // Luôn khởi tạo học sinh (dù chưa có điểm)
+                if (matchSearch) {
                     if(!studentsMap[item.student_id]) {
                         studentsMap[item.student_id] = { id: item.student_id, name: item.full_name, class: item.class_name, grades: [] };
                     }
-                    // CHỈ đẩy môn học vào mảng nếu môn đó thuộc KỲ ĐANG CHỌN
                     if (item.subject_name && item.semester === selectedSemester) {
                         studentsMap[item.student_id].grades.push(item);
                     }
-                });
+                }
+            });
 
-                let html = "";
-                Object.values(studentsMap).forEach(s => {
+            // Bắt đầu vẽ bảng (Giữ nguyên logic gộp cột cũ)
+            let html = "";
+            const studentArray = Object.values(studentsMap);
+            
+            if (studentArray.length === 0) {
+                html = `<tr><td colspan="7" style="text-align:center; color:red;">Không tìm thấy học sinh nào phù hợp!</td></tr>`;
+            } else {
+                studentArray.forEach(s => {
                     let rowCount = s.grades.length > 0 ? s.grades.length : 1;
                     
                     html += `<tr>
@@ -284,13 +309,12 @@ document.addEventListener("DOMContentLoaded", async function() {
                     if (s.grades.length > 0) {
                         let first = s.grades[0];
                         let total = (parseFloat(first.process_score) * 0.4 + parseFloat(first.final_score) * 0.6).toFixed(2);
-                        // Đã bỏ cột in Kỳ học
                         html += `
                             <td><strong>${first.subject_name}</strong></td>
                             <td>${first.process_score}</td>
                             <td>${first.final_score}</td>
                             <td><strong>${total}</strong></td>
-                            <td rowspan="${rowCount}"><button class="btn-action btn-edit" onclick="openEditModal('${s.id}')">Nhập / Sửa điểm</button></td>
+                            <td rowspan="${rowCount}"><button class="btn-action btn-edit action-column" onclick="openEditModal('${s.id}')">Nhập / Sửa điểm</button></td>
                         </tr>`;
                         
                         for(let i = 1; i < s.grades.length; i++) {
@@ -306,12 +330,12 @@ document.addEventListener("DOMContentLoaded", async function() {
                     } else {
                         html += `
                             <td colspan="4" style="text-align:center; color:gray;">Chưa có điểm ở ${selectedSemester}</td>
-                            <td><button class="btn-action btn-edit" onclick="openEditModal('${s.id}')">Nhập điểm</button></td>
+                            <td class="action-column"><button class="btn-action btn-edit" onclick="openEditModal('${s.id}')">Nhập điểm</button></td>
                         </tr>`;
                     }
                 });
-                adminStudentsList.innerHTML = html;
             }
+            document.getElementById('admin-students-list').innerHTML = html;
         }
 
         // TÍNH NĂNG: Thêm học sinh mới
