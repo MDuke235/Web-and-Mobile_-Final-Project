@@ -59,11 +59,21 @@ function updateNavigation() {
 document.addEventListener("DOMContentLoaded", async function() {
     updateNavigation(); // Gọi hàm cập nhật menu đầu tiên
 
+    // Gửi request đếm view mỗi khi load bất kỳ trang nào
+    try {
+        const viewRes = await fetch('http://localhost:3000/api/stats/view', { method: 'POST' });
+        const viewData = await viewRes.json();
+        const aboutViewCount = document.getElementById('view-count-about');
+        if (aboutViewCount && viewData.success) {
+            aboutViewCount.innerText = viewData.total_views;
+        }
+    } catch (e) { console.error("Lỗi đếm view", e); }
+
     // --- A. XỬ LÝ POPUP QUẢNG CÁO ---
     const adPopup = document.getElementById("ad-popup");
     if (adPopup) {
         if (getCookie("ad_popup_shown") !== "true") {
-            setTimeout(() => adPopup.style.display = "block", 60000); 
+            setTimeout(() => adPopup.style.display = "block", 3000); 
         }
     }
 

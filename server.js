@@ -57,12 +57,20 @@ app.get('/api/student/:id', async (req, res) => {
     }
 });
 
-// 3. API: Tăng và lấy tổng lượt truy cập (View)
+// 3. API: Lấy tổng lượt truy cập (View)
 app.get('/api/stats/view', async (req, res) => {
     try {
-        // Cộng 1 vào database
+        const [rows] = await db.execute('SELECT total_views FROM site_stats WHERE id = 1');
+        res.json({ success: true, total_views: rows[0].total_views });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+// 3.1. API: Tăng lượt truy cập
+app.post('/api/stats/view', async (req, res) => {
+    try {
         await db.execute('UPDATE site_stats SET total_views = total_views + 1 WHERE id = 1');
-        // Lấy ra số mới nhất
         const [rows] = await db.execute('SELECT total_views FROM site_stats WHERE id = 1');
         res.json({ success: true, total_views: rows[0].total_views });
     } catch (err) {

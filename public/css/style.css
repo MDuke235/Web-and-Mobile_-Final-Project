@@ -22,15 +22,17 @@ body {
 }
 
 .content {
-    flex: 3; /* Chiếm 3 phần */
+    flex: 3;
+    /* Chiếm 3 phần */
     background: #fff;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .sidebar {
-    flex: 1; /* Chiếm 1 phần */
+    flex: 1;
+    /* Chiếm 1 phần */
     background: #e9ecef;
     padding: 20px;
     border-radius: 8px;
@@ -51,22 +53,28 @@ body {
    ========================================= */
 @media (max-width: 800px) {
     .container {
-        flex-direction: column; /* Đẩy sidebar xuống dưới content */
+        flex-direction: column;
+        /* Đẩy sidebar xuống dưới content */
     }
-    
+
     header nav ul {
         display: flex;
-        flex-direction: column; /* Menu dọc trên điện thoại */
+        flex-direction: column;
+        /* Menu dọc trên điện thoại */
         gap: 10px;
     }
 }
 
 /* --- STYLE CHO POPUP QUẢNG CÁO --- */
 .popup-overlay {
-    display: none; /* Ẩn mặc định, JS sẽ bật lên sau */
+    display: none;
+    /* Ẩn mặc định, JS sẽ bật lên sau */
     position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.6);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
     z-index: 1000;
 }
 
@@ -77,7 +85,7 @@ body {
     padding: 20px;
     text-align: center;
     border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .popup-content button {
@@ -92,7 +100,8 @@ body {
 
 /* --- TRANG BẢNG ĐIỂM --- */
 .table-responsive {
-    overflow-x: auto; /* Cuộn ngang nếu màn hình quá nhỏ */
+    overflow-x: auto;
+    /* Cuộn ngang nếu màn hình quá nhỏ */
     margin-top: 15px;
 }
 
@@ -102,11 +111,14 @@ table {
     margin-bottom: 20px;
 }
 
-table, th, td {
+table,
+th,
+td {
     border: 1px solid #ddd;
 }
 
-th, td {
+th,
+td {
     padding: 12px;
     text-align: left;
 }
@@ -139,7 +151,9 @@ tr:nth-child(even) {
     border: 1px solid #eee;
 }
 
-.form-group input, .form-group select, .form-group textarea {
+.form-group input,
+.form-group select,
+.form-group textarea {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -168,7 +182,7 @@ tr:nth-child(even) {
     border-left: 4px solid #0056b3;
     padding: 15px;
     margin-bottom: 15px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .comment-meta {
@@ -185,10 +199,13 @@ tr:nth-child(even) {
     color: #ffc107;
     font-weight: bold;
 }
+
 /* --- TRANG ĐĂNG NHẬP --- */
 .login-page {
-    justify-content: center; /* Căn giữa form theo chiều ngang */
-    align-items: center;     /* Căn giữa theo chiều dọc */
+    justify-content: center;
+    /* Căn giữa form theo chiều ngang */
+    align-items: center;
+    /* Căn giữa theo chiều dọc */
     min-height: 60vh;
 }
 
@@ -196,9 +213,10 @@ tr:nth-child(even) {
     background: #fff;
     padding: 30px;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 450px; /* Giới hạn chiều rộng form */
+    max-width: 450px;
+    /* Giới hạn chiều rộng form */
     text-align: center;
 }
 
@@ -241,6 +259,7 @@ tr:nth-child(even) {
 .login-hints li {
     margin-bottom: 5px;
 }
+
 /* --- TRANG QUẢN TRỊ (ADMIN) --- */
 .admin-cards {
     display: flex;
@@ -253,7 +272,7 @@ tr:nth-child(even) {
     background: #fff;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     flex: 1;
     text-align: center;
     border-top: 4px solid #0056b3;
@@ -275,31 +294,47 @@ tr:nth-child(even) {
     color: white;
 }
 
-.btn-edit { background: #ffc107; color: #333; }
-.btn-delete { background: #dc3545; }
+.btn-edit {
+    background: #ffc107;
+    color: #333;
+}
 
-.btn-edit:hover { background: #e0a800; }
-.btn-delete:hover { background: #c82333; }
+.btn-delete {
+    background: #dc3545;
+}
+
+.btn-edit:hover {
+    background: #e0a800;
+}
+
+.btn-delete:hover {
+    background: #c82333;
+}
 
 /* Responsive cho Admin Dashboard */
 @media (max-width: 800px) {
     .admin-cards {
-        flex-direction: column; /* Xếp dọc các thẻ thống kê trên mobile */
+        flex-direction: column;
+        /* Xếp dọc các thẻ thống kê trên mobile */
     }
 }
+
 /* ======================================================
    TÂN TRANG THANH MENU (HEADER & NAVIGATION)
    ====================================================== */
 
 /* 1. Khu vực Header chứa logo và menu */
 header {
-    background-color: #0056b3; /* Màu nền xanh lam chuyên nghiệp */
+    background-color: #0056b3;
+    /* Màu nền xanh lam chuyên nghiệp */
     color: #ffffff;
     padding: 15px 30px;
     display: flex;
-    justify-content: space-between; /* Đẩy tiêu đề sang trái, menu sang phải */
+    justify-content: space-between;
+    /* Đẩy tiêu đề sang trái, menu sang phải */
     align-items: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ cho đẹp */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* Đổ bóng nhẹ cho đẹp */
 }
 
 header h1 {
@@ -310,45 +345,70 @@ header h1 {
 
 /* 2. Cấu trúc danh sách Menu nằm ngang */
 header nav ul {
-    list-style-type: none; /* Xóa dấu chấm tròn mặc định */
+    list-style-type: none;
+    /* Xóa dấu chấm tròn mặc định */
     margin: 0;
     padding: 0;
-    display: flex; /* Dàn hàng ngang */
+    display: flex;
+    /* Dàn hàng ngang */
     align-items: center;
-    gap: 10px; /* Khoảng cách đều giữa các nút */
+    gap: 10px;
+    /* Khoảng cách đều giữa các nút */
 }
 
 /* 3. Trang trí các nút Link */
 header nav ul li a {
-    text-decoration: none; /* Xóa gạch chân xấu xí */
-    color: #ffffff; /* Màu chữ trắng trên nền xanh */
+    text-decoration: none;
+    /* Xóa gạch chân xấu xí */
+    color: #ffffff;
+    /* Màu chữ trắng trên nền xanh */
     font-weight: 600;
     font-size: 15px;
-    padding: 8px 16px; /* Tạo không gian bên trong nút */
-    border-radius: 6px; /* Bo góc mềm mại */
-    transition: all 0.3s ease; /* Hiệu ứng chuyển động mượt 0.3 giây */
+    padding: 8px 16px;
+    /* Tạo không gian bên trong nút */
+    border-radius: 6px;
+    /* Bo góc mềm mại */
+    transition: all 0.3s ease;
+    /* Hiệu ứng chuyển động mượt 0.3 giây */
 }
 
 /* 4. Hiệu ứng khi di chuột vào (Hover) hoặc đang ở trang hiện tại (Active) */
 header nav ul li a:hover,
 header nav ul li a.active {
-    background-color: rgba(255, 255, 255, 0.2); /* Làm sáng nền nút */
-    color: #ffc107; /* Đổi màu chữ sang vàng nổi bật */
-    transform: translateY(-2px); /* Hiệu ứng nút nảy nhẹ lên trên */
+    background-color: rgba(255, 255, 255, 0.2);
+    /* Làm sáng nền nút */
+    color: #ffc107;
+    /* Đổi màu chữ sang vàng nổi bật */
+    transform: translateY(-2px);
+    /* Hiệu ứng nút nảy nhẹ lên trên */
 }
 
 /* ======================================================
    TÍNH NĂNG 1A: CHẾ ĐỘ ĐIỆN THOẠI (RESPONSIVE)
    ====================================================== */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 800px) {
+
     /* Đẩy menu và logo nằm dọc cho gọn */
-    header { flex-direction: column; gap: 15px; text-align: center; }
-    header nav ul { flex-wrap: wrap; justify-content: center; }
-    
+    header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    header nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
     /* Giao diện chính xếp dọc thay vì ngang */
-    main.container { flex-direction: column; }
-    .admin-cards { flex-direction: column; }
-    
+    main.container {
+        flex-direction: column;
+    }
+
+    .admin-cards {
+        flex-direction: column;
+    }
+
     /* Cho phép bảng cuộn ngang trên màn hình nhỏ để không bị vỡ bố cục */
     .table-responsive {
         overflow-x: auto;
@@ -361,24 +421,43 @@ header nav ul li a.active {
    TÍNH NĂNG 1B: CHẾ ĐỘ IN ẤN CHUYÊN NGHIỆP (PRINT MODE)
    ====================================================== */
 @media print {
+
     /* 1. Ẩn tất cả những thứ không cần thiết khi in ra giấy */
-    header, footer, .sidebar, button, #search-student, #admin-semester-filter, #admin-comments-section, .admin-cards, .action-column {
+    header,
+    footer,
+    .sidebar,
+    button,
+    #search-student,
+    #admin-semester-filter,
+    #admin-comments-section,
+    .admin-cards,
+    .action-column {
         display: none !important;
     }
-    
+
     /* 2. Đổi màu nền thành trắng để tiết kiệm mực in */
-    body, main.container {
+    body,
+    main.container {
         background-color: white !important;
         color: black !important;
         box-shadow: none !important;
         margin: 0 !important;
         padding: 0 !important;
     }
-    
+
     /* 3. Chỉnh lại đường viền bảng cho sắc nét trên giấy */
-    table { width: 100% !important; border-collapse: collapse !important; }
-    th, td { border: 1px solid #000 !important; padding: 6px !important; color: black !important;}
-    
+    table {
+        width: 100% !important;
+        border-collapse: collapse !important;
+    }
+
+    th,
+    td {
+        border: 1px solid #000 !important;
+        padding: 6px !important;
+        color: black !important;
+    }
+
     /* 4. Thêm chữ ký người in ở cuối trang */
     body::after {
         content: "Xác nhận của Ban Giám Hiệu \A\A\A (Ký và ghi rõ họ tên)";
