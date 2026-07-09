@@ -1,55 +1,83 @@
-# 🎓 Hệ thống Quản lý Học sinh (Student Management System)
+# Hệ thống Quản lý Học sinh (School Management System)
 
-Đây là dự án cuối kỳ môn học Web and Mobile. Hệ thống cung cấp giải pháp quản lý điểm số học sinh trực tuyến, phân quyền rõ ràng giữa Giáo viên (Admin) và Học sinh (User), đi kèm giao diện responsive không sử dụng thư viện UI (100% Vanilla HTML/CSS/JS).
+Đây là hệ thống quản lý học sinh trực tuyến cho phép nhà trường, giáo viên và học sinh/phụ huynh theo dõi điểm số, quản lý thông tin và gửi ý kiến phản hồi. Dự án được xây dựng với kiến trúc Client-Server sử dụng Node.js, Express và MySQL.
 
-## 🚀 Công nghệ sử dụng
-* **Frontend:** HTML5, CSS3, JavaScript (Vanilla)
-* **Backend:** Node.js (Express.js)
-* **Database:** MySQL (thư viện `mysql2`)
+## 🚀 Tính năng nổi bật
 
----
+- **Quản trị viên (Superadmin):** Quản lý toàn bộ danh sách học sinh, xem tổng lượt truy cập, kiểm duyệt và xóa các bình luận phản hồi từ người dùng.
+- **Giáo viên (Teacher):** Xem danh sách học sinh và nhập/cập nhật điểm số cho từng môn học theo từng học kỳ.
+- **Học sinh (Student):** Xem bảng điểm cá nhân chi tiết theo từng môn và học kỳ, gửi bình luận hoặc phản hồi cho nhà trường.
+- **Hệ thống bảo mật:** Ngăn chặn học sinh xem điểm của người khác. Phân quyền truy cập rõ ràng giữa Admin, Teacher và Student.
 
-## ⚙️ Hướng dẫn cài đặt và chạy dự án (Dành cho thành viên nhóm)
+## 🛠 Cấu trúc thư mục (Project Structure)
 
-Để chạy được dự án này trên máy cá nhân, các bạn vui lòng làm theo các bước sau:
+Dự án được tổ chức rõ ràng theo chuẩn:
 
-### Bước 1: Chuẩn bị môi trường
-1. Cài đặt **Node.js**: [Tải tại đây](https://nodejs.org/) (Chọn bản LTS).
-2. Cài đặt **XAMPP** hoặc **MySQL Workbench** để chạy Database.
-
-### Bước 2: Tải code về máy
-Mở Terminal hoặc Git Bash và chạy lệnh:
-```bash
-git clone [https://github.com/MDuke235/Web-and-Mobile_-Final-Project.git](https://github.com/MDuke235/Web-and-Mobile_-Final-Project.git)
-cd Web-and-Mobile_-Final-Project
 ```
-### Bước 3: Cài đặt thư viện Node.js
-Trong thư mục dự án, mở Terminal và chạy lệnh:
+school_management/
+├── .env                  # Cấu hình biến môi trường (Database credentials)
+├── db.js                 # Kết nối CSDL MySQL
+├── server.js             # Khởi tạo Express server
+├── package.json          # Quản lý dependencies (express, mysql2, cors, dotenv)
+├── routes/               # Các API Router được chia nhỏ
+│   ├── adminRoutes.js    # API Quản trị & Nhập điểm
+│   ├── authRoutes.js     # API Đăng nhập
+│   ├── commentRoutes.js  # API Gửi bình luận
+│   ├── statsRoutes.js    # API Đếm lượt truy cập
+│   └── studentRoutes.js  # API Lấy dữ liệu điểm học sinh
+└── public/               # Thư mục Frontend (HTML, CSS, JS)
+    ├── index.html        # Trang chủ
+    ├── login.html        # Đăng nhập
+    ├── admin.html        # Dashboard Admin / Giáo viên
+    ├── student.html      # Xem điểm học sinh
+    ├── about.html        # Giới thiệu & Liên hệ
+    ├── css/              
+    │   └── style.css     # Stylesheet chung
+    ├── images/           # Hình ảnh dự án
+    └── js/               # Scripts được chia nhỏ theo từng trang
+        ├── global.js     
+        ├── login.js      
+        ├── admin.js      
+        └── student.js    
+```
+
+## ⚙️ Hướng dẫn cài đặt và chạy (Installation)
+
+### 1. Yêu cầu hệ thống
+- **Node.js** (Phiên bản >= 14.x)
+- **MySQL Server** (XAMPP, WAMP hoặc MySQL độc lập)
+
+### 2. Thiết lập Cơ sở dữ liệu (Database Setup)
+1. Mở MySQL và tạo một database tên là `school_management`.
+2. Tạo các bảng cần thiết (`users`, `students`, `grades`, `comments`, `site_stats`) và thêm một số dữ liệu mẫu. *(Lưu ý: Import file `.sql` của bạn vào MySQL nếu có).*
+
+### 3. Cài đặt thư viện (Install Dependencies)
+Mở terminal/command prompt tại thư mục dự án và chạy:
 ```bash
 npm install
 ```
-### Bước 4: Thiết lập Cơ sở dữ liệu (MySQL)
-Mở phần mềm quản lý MySQL của bạn.
 
-Tạo một database mới tên là school_management .
+### 4. Cấu hình biến môi trường (Environment Setup)
+Đảm bảo file `.env` đã được tạo ở thư mục gốc với nội dung tương tự sau (thay đổi thông tin cho phù hợp với MySQL của bạn):
+```env
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=Mật_Khẩu_Của_Bạn
+DB_NAME=school_management
+```
 
-Copy toàn bộ mã SQL khởi tạo các bảng users, students, grades, comments và dán vào mục SQL để chạy.
-
-Mở file db.js trong code, kiểm tra và đổi lại password cho đúng với mật khẩu MySQL trên máy.
-
-### Bước 5: Khởi động Server
-Tại Terminal đang mở ở bước 3, chạy lệnh sau để bật Server Backend:
+### 5. Khởi động Server
+Chạy lệnh sau để khởi động Backend:
 ```bash
 node server.js
 ```
-Nếu màn hình báo ✅ Đã kết nối thành công với MySQL! và 🚀 Server đang chạy tại: http://localhost:3000 là thành công.
+Terminal sẽ hiển thị dòng chữ:
+`🚀 Server đang chạy tại: http://localhost:3000`
 
-### Bước 6: Truy cập Website
-Mở trình duyệt web và truy cập địa chỉ:
-👉 http://localhost:3000
+### 6. Sử dụng
+Mở trình duyệt và truy cập vào đường dẫn: **http://localhost:3000**
 
-### Update 13/4
-Chạy dòng lệnh SQL sau trong phần mềm quản lý CSDL với schema đã tạo phía trên:
-```bash
-ALTER TABLE grades ADD CONSTRAINT chk_scores CHECK (process_score >= 0 AND process_score <= 10 AND final_score >= 0 AND final_score <= 10);
-```
+- **Tài khoản test gợi ý:**
+  - Giáo vụ (Admin): `admin_giaovu` / `123456`
+  - Giáo viên (Teacher): `gv_toan` / `123456` (Nếu có cài đặt trong DB)
+  - Học sinh (Student): `20233839` / `123456`
