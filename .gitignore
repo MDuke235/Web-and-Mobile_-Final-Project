@@ -1,2 +1,5 @@
 node_modules/
 .env
+*.zip
+sample_db_utf8mb4_ready.sql
+Yeu cau BTL.pdf
