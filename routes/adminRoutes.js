@@ -31,6 +31,22 @@ router.delete('/comments/:id', async (req, res) => {
     } catch (err) { res.status(500).json({ success: false, error: err.message }); }
 });
 
+// 7b. API: Lấy tất cả lời nhắn liên hệ
+router.get('/contacts', async (req, res) => {
+    try {
+        const [rows] = await db.execute('SELECT * FROM contacts ORDER BY created_at DESC');
+        res.json({ success: true, data: rows });
+    } catch (err) { res.status(500).json({ success: false, error: err.message }); }
+});
+
+// 7c. API: Xóa một lời nhắn liên hệ
+router.delete('/contacts/:id', async (req, res) => {
+    try {
+        await db.execute('DELETE FROM contacts WHERE id = ?', [req.params.id]);
+        res.json({ success: true });
+    } catch (err) { res.status(500).json({ success: false, error: err.message }); }
+});
+
 // 8. API: Nhập / Cập nhật điểm (Hỗ trợ theo Kỳ và Môn)
 router.post('/grades', async (req, res) => {
     const { student_id, semester, subject_name, process_score, final_score } = req.body;

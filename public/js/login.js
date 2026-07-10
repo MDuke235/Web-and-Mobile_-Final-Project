@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", async function() {
                 const result = await response.json();
 
                 if (result.success) {
-                    localStorage.setItem('currentUser', JSON.stringify(result.user));
+                    sessionStorage.setItem('currentUser', JSON.stringify(result.user));
 
                     if (result.user.role === 'admin' || result.user.role === 'teacher') {
                         let roleName = result.user.role === 'admin' ? 'Quản trị viên' : 'Giáo viên';

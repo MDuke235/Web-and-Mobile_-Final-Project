@@ -16,6 +16,7 @@ app.use('/api/login', require('./routes/authRoutes'));
 app.use('/api/student', require('./routes/studentRoutes'));
 app.use('/api/stats', require('./routes/statsRoutes'));
 app.use('/api/comments', require('./routes/commentRoutes'));
+app.use('/api/contacts', require('./routes/contactRoutes'));
 app.use('/api/admin', require('./routes/adminRoutes'));
 
 // ==========================================

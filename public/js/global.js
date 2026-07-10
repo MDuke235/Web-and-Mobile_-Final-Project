@@ -23,13 +23,13 @@ function closePopup() {
 }
 
 function logout() {
-    localStorage.removeItem('currentUser'); // Xóa trí nhớ đăng nhập
+    sessionStorage.removeItem('currentUser'); // Xóa trí nhớ đăng nhập
     alert("Đã đăng xuất thành công!");
     window.location.href = 'index.html';
 }
 
 function updateNavigation() {
-    const userJson = localStorage.getItem('currentUser');
+    const userJson = sessionStorage.getItem('currentUser');
     if (userJson) {
         const user = JSON.parse(userJson);
         const navUl = document.querySelector('header nav ul');
@@ -112,15 +112,13 @@ document.addEventListener("DOMContentLoaded", async function () {
             e.preventDefault();
 
             const newContact = {
-                student_id: "LIÊN HỆ", // Đánh dấu đây là tin nhắn từ form liên hệ
-                reviewer_name: document.getElementById('contact-name').value,
+                sender_name: document.getElementById('contact-name').value,
                 email: document.getElementById('contact-email').value,
-                rating: 5, // Mặc định
-                content: document.getElementById('contact-message').value
+                message: document.getElementById('contact-message').value
             };
 
             try {
-                const res = await fetch('http://localhost:3000/api/comments', {
+                const res = await fetch('http://localhost:3000/api/contacts', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(newContact)
@@ -130,6 +128,8 @@ document.addEventListener("DOMContentLoaded", async function () {
                 if (data.success) {
                     alert('Cảm ơn bạn! Lời nhắn của bạn đã được gửi cho Ban Giám Hiệu.');
                     contactForm.reset();
+                } else {
+                    alert("Lỗi: " + data.error);
                 }
             } catch (error) {
                 alert("Lỗi kết nối máy chủ khi gửi lời nhắn.");

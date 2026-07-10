@@ -16,15 +16,20 @@ document.addEventListener("DOMContentLoaded", async function() {
         const urlParams = new URLSearchParams(window.location.search);
         let studentId = urlParams.get('id');
 
-        const currentUserStr = localStorage.getItem('currentUser');
-        if (currentUserStr) {
-            const user = JSON.parse(currentUserStr);
-            // BẢO MẬT: Nếu là học sinh, CHỈ ĐƯỢC PHÉP xem điểm của chính mình
-            if (user.role === 'user') {
-                if (studentId !== user.username) {
-                    studentId = user.username;
-                    window.history.replaceState(null, null, `?id=${studentId}`);
-                }
+        const currentUserStr = sessionStorage.getItem('currentUser');
+        if (!currentUserStr) {
+            studentInfoDiv.innerHTML = `<h2>Vui lòng <a href="login.html">đăng nhập</a> để xem bảng điểm!</h2>`;
+            const commentSection = document.querySelector('.comment-section');
+            if (commentSection) commentSection.style.display = 'none';
+            return;
+        }
+
+        const user = JSON.parse(currentUserStr);
+        // BẢO MẬT: Nếu là học sinh, CHỈ ĐƯỢC PHÉP xem điểm của chính mình
+        if (user.role === 'user') {
+            if (studentId !== user.username) {
+                studentId = user.username;
+                window.history.replaceState(null, null, `?id=${studentId}`);
             }
         }
 
@@ -86,7 +91,7 @@ document.addEventListener("DOMContentLoaded", async function() {
                         studentInfoDiv.innerHTML = tableHTML;
 
                         // PHÂN BIỆT GIAO DIỆN ADMIN VS STUDENT (Render lại Banner nếu cần)
-                        const userJson = localStorage.getItem('currentUser');
+                        const userJson = sessionStorage.getItem('currentUser');
                         if (userJson) {
                             const loggedInUser = JSON.parse(userJson);
                             if (loggedInUser.role === 'admin') {

@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", async function() {
 
     if (adminStudentsList && adminCommentsList) {
         // BẢO MẬT: CHẶN TRUY CẬP NẾU KHÔNG PHẢI ADMIN HOẶC GIÁO VIÊN
-        const loggedInUser = JSON.parse(localStorage.getItem('currentUser'));
+        const loggedInUser = JSON.parse(sessionStorage.getItem('currentUser'));
         if (!loggedInUser || (loggedInUser.role !== 'admin' && loggedInUser.role !== 'teacher')) {
             alert("Bạn không có quyền truy cập trang này!");
             window.location.href = "index.html";
@@ -197,12 +197,35 @@ document.addEventListener("DOMContentLoaded", async function() {
             }
         }
 
-        loadAdminStudents(); loadAdminComments();
+        window.loadAdminContacts = async function() {
+            const adminContactsList = document.getElementById('admin-contacts-list');
+            if (!adminContactsList) return;
+            const res = await fetch('http://localhost:3000/api/admin/contacts');
+            const result = await res.json();
+            if (result.success) {
+                let html = "";
+                result.data.forEach(c => {
+                    html += `<tr><td>#${c.id}</td><td>${c.sender_name}</td><td>${c.email}</td><td>${c.message}</td><td><button class="btn-action btn-delete" onclick="deleteContact(${c.id})">Xóa</button></td></tr>`;
+                });
+                adminContactsList.innerHTML = html;
+            }
+        }
+
+        loadAdminStudents(); 
+        loadAdminComments();
+        loadAdminContacts();
 
         window.deleteComment = async function(id) {
             if(confirm("Xóa bình luận này?")) {
                 const res = await fetch(`http://localhost:3000/api/admin/comments/${id}`, { method: 'DELETE' });
                 if ((await res.json()).success) loadAdminComments();
+            }
+        }
+
+        window.deleteContact = async function(id) {
+            if(confirm("Xóa lời nhắn này?")) {
+                const res = await fetch(`http://localhost:3000/api/admin/contacts/${id}`, { method: 'DELETE' });
+                if ((await res.json()).success) loadAdminContacts();
             }
         }
     }
