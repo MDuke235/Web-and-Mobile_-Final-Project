@@ -23,9 +23,23 @@
     <main class="container">
         <section class="content">
             <h2>Giới thiệu về nhà trường</h2>
-            <p>Trường Phổ thông tự hào là đơn vị tiên phong trong việc ứng dụng công nghệ thông tin vào quản lý giáo
-                dục. Hệ thống quản lý điểm số trực tuyến giúp phụ huynh và học sinh dễ dàng theo dõi tiến độ học tập một
-                cách minh bạch, nhanh chóng và chính xác.</p>
+            <p id="about-content">Đang tải nội dung...</p>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", async function() {
+                    try {
+                        const res = await fetch('http://localhost:3000/api/admin/content/about');
+                        const data = await res.json();
+                        if (data.success && data.content) {
+                            document.getElementById('about-content').innerText = data.content;
+                        } else {
+                            document.getElementById('about-content').innerText = "Chưa có nội dung giới thiệu.";
+                        }
+                    } catch (error) {
+                        document.getElementById('about-content').innerText = "Lỗi tải nội dung.";
+                    }
+                });
+            </script>
 
             <hr class="divider">
 

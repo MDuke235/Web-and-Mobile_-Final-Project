@@ -47,7 +47,30 @@ router.delete('/contacts/:id', async (req, res) => {
     } catch (err) { res.status(500).json({ success: false, error: err.message }); }
 });
 
-// 8. API: Nhập / Cập nhật điểm (Hỗ trợ theo Kỳ và Môn)
+// 8. API: Lấy nội dung trang
+router.get('/content/:page', async (req, res) => {
+    try {
+        const [rows] = await db.execute('SELECT content FROM site_content WHERE page = ?', [req.params.page]);
+        if (rows.length > 0) res.json({ success: true, content: rows[0].content });
+        else res.json({ success: true, content: "" });
+    } catch (err) { res.status(500).json({ success: false, error: err.message }); }
+});
+
+// 9. API: Cập nhật nội dung trang
+router.post('/content/:page', async (req, res) => {
+    try {
+        const { content } = req.body;
+        const [exist] = await db.execute('SELECT page FROM site_content WHERE page = ?', [req.params.page]);
+        if (exist.length > 0) {
+            await db.execute('UPDATE site_content SET content = ? WHERE page = ?', [content, req.params.page]);
+        } else {
+            await db.execute('INSERT INTO site_content (page, content) VALUES (?, ?)', [req.params.page, content]);
+        }
+        res.json({ success: true });
+    } catch (err) { res.status(500).json({ success: false, error: err.message }); }
+});
+
+// 10. API: Nhập / Cập nhật điểm (Hỗ trợ theo Kỳ và Môn)
 router.post('/grades', async (req, res) => {
     const { student_id, semester, subject_name, process_score, final_score } = req.body;
     

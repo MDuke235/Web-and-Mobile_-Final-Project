@@ -54,6 +54,12 @@ document.addEventListener("DOMContentLoaded", async function() {
             const result = await res.json();
             if (result.success) {
                 window.allStudentsData = result.data;
+                
+                // Đếm số lượng học sinh duy nhất
+                const uniqueStudents = new Set(result.data.map(item => item.student_id));
+                const totalStudentsEl = document.getElementById('admin-total-students');
+                if (totalStudentsEl) totalStudentsEl.innerText = uniqueStudents.size;
+
                 renderAdminTable(); 
             }
         }
@@ -211,9 +217,36 @@ document.addEventListener("DOMContentLoaded", async function() {
             }
         }
 
+        window.loadAdminContent = async function() {
+            const aboutContentEl = document.getElementById('admin-about-content');
+            if (!aboutContentEl) return;
+            const res = await fetch('http://localhost:3000/api/admin/content/about');
+            const result = await res.json();
+            if (result.success) {
+                aboutContentEl.value = result.content;
+            }
+        }
+
         loadAdminStudents(); 
         loadAdminComments();
         loadAdminContacts();
+        loadAdminContent();
+
+        window.saveContent = async function(page) {
+            const content = document.getElementById('admin-about-content').value;
+            try {
+                const res = await fetch(`http://localhost:3000/api/admin/content/${page}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ content })
+                });
+                const result = await res.json();
+                if (result.success) alert("Đã lưu nội dung thành công!");
+                else alert("Lỗi khi lưu nội dung!");
+            } catch (e) {
+                alert("Lỗi kết nối máy chủ!");
+            }
+        }
 
         window.deleteComment = async function(id) {
             if(confirm("Xóa bình luận này?")) {

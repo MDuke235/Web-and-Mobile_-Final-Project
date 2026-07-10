@@ -29,7 +29,7 @@
                 </div>
                 <div class="card">
                     <h3>Tổng học sinh</h3>
-                    <p class="stat-number">245</p>
+                    <p id="admin-total-students" class="stat-number">0</p>
                 </div>
                 <div class="card">
                     <h3>Bình luận chờ duyệt</h3>
@@ -64,6 +64,15 @@
                     </thead>
                     <tbody id="admin-students-list"></tbody>
                 </table>
+            </div>
+
+            <div id="admin-content-section">
+                <hr class="divider">
+                <h3>Quản lý Nội Dung Trang Giới Thiệu</h3>
+                <div class="form-group" style="text-align: left;">
+                    <textarea id="admin-about-content" rows="6" style="width: 100%; padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px;" placeholder="Đang tải nội dung..."></textarea>
+                    <button class="btn-submit" onclick="saveContent('about')" style="margin-top: 10px;">Lưu Nội Dung</button>
+                </div>
             </div>
 
             <div id="admin-comments-section">
