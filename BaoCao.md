@@ -10,9 +10,12 @@
 - **100%** (Hoàn thành đầy đủ các chức năng theo yêu cầu đề ra).
 
 ## 3. Phân Công Nhiệm Vụ Của Từng Thành Viên
-- **Tạ Minh Đức (Nhóm trưởng):** Đảm nhiệm thiết kế cơ sở dữ liệu (Database), phát triển hệ thống Backend (Node.js/Express) gồm các API cốt lõi, tích hợp toàn bộ hệ thống từ Frontend đến Backend và xử lý logic phân quyền. Đóng góp vào việc định hình cấu trúc và hoàn thiện mã nguồn.
-- **Nguyễn Lê Trung Hiếu:** Đảm nhiệm phát triển giao diện Frontend (HTML/CSS/JS) cho trang Quản trị viên (Admin) và Giáo viên, xử lý gọi API hiển thị dữ liệu và cập nhật điểm số.
-- **Trần Gia Huy:** Đảm nhiệm phát triển giao diện Frontend (HTML/CSS/JS) cho trang Học sinh, trang Đăng nhập, đồng thời thực hiện kiểm thử hệ thống (Testing) và rà soát lỗi giao diện.
+
+| STT | Họ và Tên | Vai trò / Nhiệm vụ chi tiết | Mức độ đóng góp |
+|:---:|---|---|:---:|
+| 1 | **Tạ Minh Đức** | **Nhóm trưởng**: Thiết kế cơ sở dữ liệu, phát triển hệ thống Backend (Node.js/Express), viết API cốt lõi, tích hợp Frontend-Backend, xử lý logic phân quyền và đóng góp phần lớn vào định hình cấu trúc mã nguồn. | 33.33% |
+| 2 | **Nguyễn Lê Trung Hiếu** | **Thành viên**: Phát triển giao diện Frontend (HTML/CSS/JS) cho trang Quản trị viên (Admin) và Giáo viên, xử lý gọi API hiển thị dữ liệu và cập nhật điểm số. | 33.33% |
+| 3 | **Trần Gia Huy** | **Thành viên**: Phát triển giao diện Frontend (HTML/CSS/JS) cho trang Học sinh, trang Đăng nhập, thực hiện kiểm thử hệ thống (Testing) và rà soát lỗi giao diện. | 33.33% |
 
 ## 4. Hướng Dẫn Cài Đặt Và Sử Dụng
 
