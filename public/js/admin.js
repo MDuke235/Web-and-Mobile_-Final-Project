@@ -219,12 +219,12 @@ document.addEventListener("DOMContentLoaded", async function() {
         }
 
         window.loadAdminContent = async function() {
-            const aboutContentEl = document.getElementById('admin-about-content');
-            if (!aboutContentEl) return;
-            const res = await fetch('http://localhost:3000/api/admin/content/about');
+            const homeContentEl = document.getElementById('admin-home-content');
+            if (!homeContentEl) return;
+            const res = await fetch('http://localhost:3000/api/admin/content/home');
             const result = await res.json();
             if (result.success) {
-                aboutContentEl.value = result.content;
+                homeContentEl.value = result.content;
             }
         }
 
@@ -234,7 +234,13 @@ document.addEventListener("DOMContentLoaded", async function() {
         loadAdminContent();
 
         window.saveContent = async function(page) {
-            const content = document.getElementById('admin-about-content').value;
+            let content = "";
+            if (page === 'home') {
+                content = document.getElementById('admin-home-content').value;
+            } else if (page === 'about') {
+                const el = document.getElementById('admin-about-content');
+                if (el) content = el.value;
+            }
             try {
                 const res = await fetch(`http://localhost:3000/api/admin/content/${page}`, {
                     method: 'POST',
