@@ -40,6 +40,7 @@ document.addEventListener("DOMContentLoaded", async function() {
             if (document.getElementById('admin-stats-section')) document.getElementById('admin-stats-section').style.display = 'none';
             if (document.getElementById('btn-add-student')) document.getElementById('btn-add-student').style.display = 'none';
             if (document.getElementById('admin-comments-section')) document.getElementById('admin-comments-section').style.display = 'none';
+            if (document.getElementById('admin-content-section')) document.getElementById('admin-content-section').style.display = 'none';
         }
         try {
             const viewRes = await fetch('http://localhost:3000/api/stats/view');

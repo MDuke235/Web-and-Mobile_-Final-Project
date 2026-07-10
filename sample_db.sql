@@ -111,6 +111,30 @@ INSERT INTO `grades` VALUES (1,'20233839','Học kỳ 1','Toán Học',8.50,9.00
 UNLOCK TABLES;
 
 --
+-- Table structure for table `site_content`
+--
+
+DROP TABLE IF EXISTS `site_content`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `site_content` (
+  `page` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `content` text COLLATE utf8mb4_unicode_ci,
+  PRIMARY KEY (`page`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `site_content`
+--
+
+LOCK TABLES `site_content` WRITE;
+/*!40000 ALTER TABLE `site_content` DISABLE KEYS */;
+INSERT INTO `site_content` VALUES ('about','Trường Phổ thông tự hào là đơn vị tiên phong trong việc ứng dụng công nghệ thông tin vào quản lý giáo dục. Hệ thống quản lý điểm số trực tuyến giúp phụ huynh và học sinh dễ dàng theo dõi tiến độ học tập một cách minh bạch, nhanh chóng và chính xác.');
+/*!40000 ALTER TABLE `site_content` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `site_stats`
 --
 
