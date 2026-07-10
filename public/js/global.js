@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     const adPopup = document.getElementById("ad-popup");
     if (adPopup) {
         if (getCookie("ad_popup_shown") !== "true") {
-            setTimeout(() => adPopup.style.display = "block", 3000);
+            setTimeout(() => adPopup.style.display = "block", 60000);
         }
     }
 
