@@ -13,7 +13,7 @@
 
 | STT | Họ và Tên | Vai trò / Nhiệm vụ chi tiết | Mức độ đóng góp |
 |:---:|---|---|:---:|
-| 1 | **Tạ Minh Đức** | **Nhóm trưởng**: Thiết kế cơ sở dữ liệu, phát triển hệ thống Backend (Node.js/Express), viết API cốt lõi, tích hợp Frontend-Backend, xử lý logic phân quyền và đóng góp phần lớn vào định hình cấu trúc mã nguồn. | 33.33% |
+| 1 | **Tạ Minh Đức** | **Nhóm trưởng**: Thiết kế cơ sở dữ liệu, phát triển hệ thống Backend (Node.js/Express), viết API cốt lõi, tích hợp Frontend-Backend, xử lý logic phân quyền và đóng góp vào định hình cấu trúc mã nguồn. | 33.33% |
 | 2 | **Nguyễn Lê Trung Hiếu** | **Thành viên**: Phát triển giao diện Frontend (HTML/CSS/JS) cho trang Quản trị viên (Admin) và Giáo viên, xử lý gọi API hiển thị dữ liệu và cập nhật điểm số. | 33.33% |
 | 3 | **Trần Gia Huy** | **Thành viên**: Phát triển giao diện Frontend (HTML/CSS/JS) cho trang Học sinh, trang Đăng nhập, thực hiện kiểm thử hệ thống (Testing) và rà soát lỗi giao diện. | 33.33% |
 
