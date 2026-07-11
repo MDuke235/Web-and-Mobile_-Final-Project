@@ -42,6 +42,7 @@
    - Truy cập **http://localhost:3000** trên trình duyệt.
 
 ### Tài Khoản Sử Dụng Mẫu:
-- **Giáo vụ (Admin):** `admin_giaovu` / `123456`
-- **Giáo viên (Teacher):** `gv_toan` / `123456`
-- **Học sinh (Student):** `20233839` / `123456`
+  - Giáo vụ (Admin): `admin_giaovu` / `123456`
+  - Quản trị viên (Superadmin): `superadmin` / `123456` (Nếu có cài đặt trong DB)
+  - Học sinh (Student): `20233839` / `123456`
+
