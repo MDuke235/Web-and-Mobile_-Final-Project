@@ -79,5 +79,5 @@ Mở trình duyệt và truy cập vào đường dẫn: **http://localhost:3000
 
 - **Tài khoản test gợi ý:**
   - Giáo vụ (Admin): `admin_giaovu` / `123456`
-  - Giáo viên (Teacher): `gv_toan` / `123456` (Nếu có cài đặt trong DB)
+  - Quản trị viên (Superadmin): `superadmin` / `123456` (Nếu có cài đặt trong DB)
   - Học sinh (Student): `20233839` / `123456`
