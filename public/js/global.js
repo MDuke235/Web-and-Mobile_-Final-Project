@@ -68,6 +68,12 @@ function updateNavigation() {
             logoutLi.innerHTML = `<a href="#" onclick="logout()">Đăng xuất (${user.username})</a>`;
             navUl.appendChild(logoutLi);
         }
+
+        // Ẩn nút "Đăng nhập ngay" ở trang chủ nếu đã đăng nhập
+        const heroLoginBtn = document.querySelector('.hero-content a[href="login.html"]');
+        if (heroLoginBtn) {
+            heroLoginBtn.style.display = 'none';
+        }
     }
 }
 
