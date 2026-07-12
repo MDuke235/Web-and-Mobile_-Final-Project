@@ -72,12 +72,12 @@ Chạy lệnh sau để khởi động Backend:
 node server.js
 ```
 Terminal sẽ hiển thị dòng chữ:
-`🚀 Server đang chạy tại: http://localhost:3000`
+`Server đang chạy tại: http://localhost:3000`
 
 ### 6. Sử dụng
 Mở trình duyệt và truy cập vào đường dẫn: **http://localhost:3000**
 
 - **Tài khoản test gợi ý:**
   - Giáo vụ (Admin): `admin_giaovu` / `123456`
-  - Quản trị viên (Superadmin): `superadmin` / `123456` (Nếu có cài đặt trong DB)
+  - Quản trị viên (Superadmin): `superadmin` / `123456` 
   - Học sinh (Student): `20233839` / `123456`

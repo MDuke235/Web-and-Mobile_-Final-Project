@@ -209,7 +209,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin_giaovu','123456','teacher','2026-04-08 03:37:44'),(2,'user_phuhuynh','123456','user','2026-04-08 03:37:44'),(4,'20233839','123456','user','2026-04-10 02:54:10'),(5,'superadmin','123456','admin','2026-04-13 02:02:41');
+INSERT INTO `users` VALUES (1,'admin_giaovu','123456','teacher','2026-04-08 03:37:44'),(4,'20233839','123456','user','2026-04-10 02:54:10'),(5,'superadmin','123456','admin','2026-04-13 02:02:41');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
